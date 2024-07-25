@@ -17,12 +17,19 @@ async function getApi(Url){
     let cartona=""
     let rate
     let title
+    let release_date
     for(i=1;i<final_res.results.length;i++){
         if (final_res.results[i].title==undefined){
             title=final_res.results[i].name
         }
         else{
             title=final_res.results[i].title
+        }
+        if(final_res.results[i].release_date!==undefined){
+            release_date=final_res.results[i].release_date
+        }
+        else{
+            release_date=final_res.results[i].first_air_date
         }
         rate=final_res.results[i].vote_average
         cartona+=
@@ -36,7 +43,7 @@ async function getApi(Url){
                                 <div class="desc">
                                     <h2>${title}</h2>
                                     <p>${final_res.results[i].overview}</p>
-                                    <p>Release date: ${final_res.results[i].release_date}</p>
+                                    <p>Release date: ${release_date}</p>
                                     <div class="rate rounded-circle">${Number(rate.toFixed(1))}</div>
                                 </div>
                             </div>   
